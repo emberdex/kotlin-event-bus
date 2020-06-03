@@ -5,7 +5,6 @@ class EventBus<T : Event> {
     val delegates: MutableList<(T) -> Unit> = mutableListOf()
 
     operator fun plusAssign(delegate: (T) -> Unit) {
-
         delegates.add(delegate)
     }
 

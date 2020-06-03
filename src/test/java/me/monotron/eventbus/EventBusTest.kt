@@ -11,10 +11,12 @@ internal class EventBusTest {
 
     object TestEvent : Event()
 
-    val sut: EventBus<TestEvent> = EventBus()
+    lateinit var sut: EventBus<TestEvent>
 
     @BeforeEach
-    fun beforeEach() {}
+    fun beforeEach() {
+        sut = EventBus()
+    }
 
     @Test
     fun `operator overload plusAssign adds delegate to list`() {
@@ -33,7 +35,7 @@ internal class EventBusTest {
             sut += delegate
         }
 
-        sut.triggerEvent(TestEvent, null)
+        sut.triggerEvent(TestEvent)
 
         verify(delegate, times(10)).invoke(TestEvent)
     }
@@ -45,7 +47,7 @@ internal class EventBusTest {
 
         val eventCaptor: KArgumentCaptor<TestEvent> = argumentCaptor()
 
-        sut.triggerEvent(TestEvent, null)
+        sut.triggerEvent(TestEvent)
 
         verify(delegate).invoke(eventCaptor.capture())
 
