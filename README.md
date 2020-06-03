@@ -44,6 +44,8 @@ This event is triggered in the same way as a regular event bus, but you can use 
 myConditionalEventBus.addConditionalDelegate(predicate = { /* event logic goes here */ }, delegate = {})
 ```
 
+Both the predicate and the delegate functions receive the triggered event as an argument, which can also contain the sender like before.
+
 (You can also use the plus assign syntax from before to add a delegate which always executes.)
 
 ## Testing
